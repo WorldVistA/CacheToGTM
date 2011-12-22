@@ -1,0 +1,12 @@
+
+ This routine was written for Cache that runs on a Windows PC.
+
+ It can probably be modified to run in a Cache VMS environment by asking the user for a directory
+ to put the .m files into and replacing the literal "GTM/" with that variable.
+
+ Create a GTM folder in the root folder of the namespace that this routine runs in.
+
+ Run ^LTUGTM to specify which routines to convert.
+
+ Run ALL^LTUGTM to have the utility convert all routines in the namespace from A to ZZZZZZZ.
+

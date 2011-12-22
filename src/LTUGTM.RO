@@ -1,0 +1,71 @@
+Cache for Windows NT^INT^^~Format=Cache.S~
+%RO on 22 Dec 2011   1:25 PM
+LTUGTM^INT^1^62447,39157^
+LTU0020 ;SLC-ISC/RJS - utility: Save Routines For GTM;3/02/10  08:31
+ ;
+ ;
+S ;
+ ;
+ N RDATE
+ ;
+ S X="N",%DT="T" D ^%DT
+ S RDATE=$P(Y,".",1)_"-"_$E($P(Y,".",2)_"0000",1,4)
+ ;
+ W !!,"Routine: " R RTN Q:'$L(RTN)
+ I '$D(^ROUTINE(RTN)) W !!,"Routine """,RTN,"""  not found" Q
+ ;
+ S HOME=$I
+ S FILE="LT/GTM/"_RTN_".m"
+ O FILE:("WN"):1 E  U HOME W !,"Not able to create file..." Q
+ ;
+ U FILE X "ZR  ZL "_RTN_" F CNT=1:1 S LINE=$T(+CNT) Q:'$L(LINE)  W $P(LINE,"" "",1),$C(9),$P(LINE,"" "",2,$L(LINE,"" "")),$C(10)"
+ ;
+ C FILE
+ ;
+ Q
+ALL ;
+ ;
+ N RDATE
+ ;
+ S HOME=$I
+ S X="N",%DT="T" D ^%DT
+ S RDATE=$P(Y,".",1)_"-"_$E($P(Y,".",2)_"0000",1,4)
+ ;
+ S RTN="LT" F  S RTN=$O(^ROUTINE(RTN)) Q:'$L(RTN)  Q:'($E(RTN,1,2)="LT")  D
+ .U HOME W !,"Routine: ",RTN
+ .;
+ .S FILE="GTM/"_RTN_".m"
+ .O FILE:("WN"):1 E  U HOME W !,"Not able to create file..." Q
+ .;
+ .U FILE X "ZR  ZL "_RTN_" F CNT=1:1 S LINE=$T(+CNT) Q:'$L(LINE)  W $P(LINE,"" "",1),$C(9),$P(LINE,"" "",2,$L(LINE,"" "")),$C(10)"
+ .;
+ .C FILE
+ ;
+ Q
+ ;
+ ;
+LOAD ;
+ ;
+ S HOME=$I
+ S $ZT="EOF^LT1"
+ S FILE="LT/CHKOP.M"
+ O FILE:("R"):1 E  U $I W !,"Not able to Open file..." Q
+ ;
+ S LNCNT=0
+ F CNT=0:1 D
+ .U FILE R *CHAR
+ .U HOME W !,CHAR,?10,$C(CHAR)
+ ;
+ C FILE
+ ;
+ ;
+ Q
+ ;
+EOF ;
+ C FILE
+ U HOME W !,LNCNT," Lines"
+ Q
+ ;
+
+
+
