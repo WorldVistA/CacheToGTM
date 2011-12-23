@@ -1,15 +1,12 @@
 The code in this repository was developed by
 Rick Spivey at the Department of Veterans Affairs.
 
-The code is in the Public Domain.
-
-Therefore no LICENSE is required to deal with the
-code at this point.
+The code is copyrighted by Rick Spivey and it is
+distributed under the Apache 2.0 License. Please
+see the LICENSE file for details.
 
 The purpose of the code is to convert M routines
 from Intersystems Cache to GTM.
 
 For more details, please see document in the doc
 directory.
-
-
